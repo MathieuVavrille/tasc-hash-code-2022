@@ -12,7 +12,7 @@ Vars:
 		
 	Assignments:
 		A_i_j_k, Boolean person i assigned to project k
-		T_i_j_k, the date when a person i can start project i, T_i_1 = 0
+		T_i_k, the date when a person i can start project i, T_i_1 = 0
 		
 Constraints:
 	sum[l=1..K](A_i_j_k) =< 1 (the person cannot be assigned to handle more than one task in a project)
