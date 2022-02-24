@@ -8,4 +8,11 @@ public class Person {
     this.name = name;
     this.skills = skills;
   }
+
+  public boolean canDo(Skill requiredSkill) {
+    for (Skill s : skills) {
+      if (s.name.equals(requiredSkill.name) && s.level >= requiredSkill.level) return true;
+    }
+    return false;
+  }
 }
