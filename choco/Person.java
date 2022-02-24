@@ -23,4 +23,8 @@ public class Person implements Comparable<Person> {
     int otherSumLevel = p.skills.stream().mapToInt(s -> s.level).sum();
     return Integer.compare(sumLevel, otherSumLevel);
   }
+
+  public boolean canAlmostDo(Skill requiredSkill) {
+    return requiredSkill.level == 1 || skills.stream().anyMatch(skill -> skill.name.equals(requiredSkill.name) && skill.level == requiredSkill.level - 1);
+  }
 }
