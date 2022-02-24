@@ -48,7 +48,7 @@ public class Main {
         projects.add(new Project(name, D, S, B, skills));
       }
       Collections.sort(projects, Collections.reverseOrder());
-      saveResults(greedySimple(persons, projects), filename);
+      saveResults(greedyLevelUpRerun(persons, projects), filename);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -60,6 +60,31 @@ public class Main {
       List<Person> talented = project.whoCanDoIt(persons);
       if (talented != null) {
         pp.add(new ProjectPeople(project, talented));
+      }
+    }
+    return pp;
+  }
+
+  public static List<ProjectPeople> greedyLevelUpRerun(List<Person> persons, List<Project> projects) {
+    Set<Integer> usedProjects = new HashSet<Integer>();
+    List<ProjectPeople> pp = new ArrayList<ProjectPeople>();
+    boolean modified = true;
+    while (modified) {
+      modified = false;
+      for (int i = 0; i < projects.size(); i++) {
+        if (!usedProjects.contains(i)) {
+          List<Person> talented = projects.get(i).whoCanDoIt(persons);
+          if (talented != null) {
+            ProjectPeople smallPP = new ProjectPeople(projects.get(i), talented);
+            int scorePP = smallPP.score();
+            if (scorePP > 100) {
+              smallPP.teach();
+              pp.add(smallPP);
+              modified = true;
+              usedProjects.add(i);
+            }
+          }
+        }
       }
     }
     return pp;

@@ -1,7 +1,1 @@
-javac -cp ".:choco-solver.jar:" *.java
-java -cp "choco-solver.jar:.:" Main ../data/a_an_example.in.txt
-java -cp "choco-solver.jar:.:" Main ../data/b_better_start_small.in.txt
-java -cp "choco-solver.jar:.:" Main ../data/c_collaboration.in.txt
-java -cp "choco-solver.jar:.:" Main ../data/d_dense_schedule.in.txt
-java -cp "choco-solver.jar:.:" Main ../data/e_exceptional_skills.in.txt
-java -cp "choco-solver.jar:.:" Main ../data/f_find_great_mentors.in.txt
+rm -f ../data/*.out && javac -cp ".:choco-solver.jar:" *.java && echo "compiled" && java -cp "choco-solver.jar:.:" Main ../data/a_an_example.in.txt && echo "A" && java -cp "choco-solver.jar:.:" Main ../data/b_better_start_small.in.txt && echo "B" && java -cp "choco-solver.jar:.:" Main ../data/c_collaboration.in.txt && echo "C" && java -cp "choco-solver.jar:.:" Main ../data/d_dense_schedule.in.txt && echo "D" && java -cp "choco-solver.jar:.:" Main ../data/e_exceptional_skills.in.txt && echo "E" && java -cp "choco-solver.jar:.:" Main ../data/f_find_great_mentors.in.txt && echo "F"

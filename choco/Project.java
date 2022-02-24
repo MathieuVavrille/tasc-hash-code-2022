@@ -29,7 +29,7 @@ public class Project implements Comparable<Project> {
             i = persons.size();
             done = true;
           }
-          if (person.get(i).canAlmostDo(skill) && skill.hasMentor()) {
+          else if (persons.get(i).canAlmostDo(skill) && skill.hasMentor(canDoIt)) {
             usedPersons.add(i);
             canDoIt.add(persons.get(i));
             i = persons.size();
