@@ -65,26 +65,33 @@ public class Main {
     return pp;
   }
 
-  public static List<ProjectPeople> greedyLevelUpRerun(List<Person> persons, List<Project> projects) {
-    Set<Integer> usedProjects = new HashSet<Integer>();
+  public static List<ProjectPeople> greedyLevelUpRerun(List<Person> people, List<Project> projects) {
+    Random random = new Random(97);
+    Set<Project> usedProjects = new HashSet<Project>();
     List<ProjectPeople> pp = new ArrayList<ProjectPeople>();
     boolean modified = true;
     while (modified) {
       modified = false;
-      for (int i = 0; i < projects.size(); i++) {
-        if (!usedProjects.contains(i)) {
-          List<Person> talented = projects.get(i).whoCanDoIt(persons);
+      ProjectPeople bestProjectP = null;
+      int bestScore = Integer.MIN_VALUE;
+      for (Project project : projects) {
+        if (!usedProjects.contains(project)) {
+          List<Person> talented = project.whoCanDoIt(people);
           if (talented != null) {
-            ProjectPeople smallPP = new ProjectPeople(projects.get(i), talented);
-            int scorePP = smallPP.score();
-            if (scorePP > 100) {
-              smallPP.teach();
-              pp.add(smallPP);
-              modified = true;
-              usedProjects.add(i);
+            ProjectPeople smallPP = new ProjectPeople(project, talented);
+            int scorePP = smallPP.weightedScore();
+            if (scorePP > bestScore && random.nextDouble() < 0.1) {
+              bestProjectP = smallPP;
+              bestScore = scorePP;
             }
           }
         }
+      }
+      if (bestProjectP != null) {
+        bestProjectP.teach();
+        pp.add(bestProjectP);
+        usedProjects.add(bestProjectP.project);
+        modified = true;
       }
     }
     return pp;

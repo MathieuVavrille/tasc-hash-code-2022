@@ -29,4 +29,8 @@ public class ProjectPeople {
   public void updateEndTimes() {
     people.stream().forEach(p -> p.nextTimeAvailable = terminationTime);
   }
+
+  public double weigthedScore() {
+    return ((double)Math.max(0,score()))/terminationTime;
+  }
 }

@@ -16,29 +16,27 @@ public class Project implements Comparable<Project> {
     this.skills = skills;
   }
 
-  public List<Person> whoCanDoIt(List<Person> persons) {
+  public List<Person> whoCanDoIt(List<Person> people) {
     List<Person> canDoIt = new ArrayList<Person>();
-    Set<Integer> usedPersons = new HashSet<Integer>();
+    Set<Person> usedPeople = new HashSet<Person>();
     for (Skill skill : skills) {
-      boolean done = false;
-      for (int i = 0; i < persons.size(); i++) {
-        if (!usedPersons.contains(i)) {
-          if (persons.get(i).canDo(skill)) {
-            usedPersons.add(i);
-            canDoIt.add(persons.get(i));
-            i = persons.size();
-            done = true;
-          }
-          else if (persons.get(i).canAlmostDo(skill) && skill.hasMentor(canDoIt)) {
-            usedPersons.add(i);
-            canDoIt.add(persons.get(i));
-            i = persons.size();
-            done = true;
+      Person fastestPerson = null;
+      int fastestTime = Integer.MAX_VALUE;
+      for (Person p : people) {
+        if (!usedPeople.contains(p)) {
+          if (p.canDo(skill) || p.canAlmostDo(skill) && skill.hasMentor(canDoIt)) {
+            if (p.nextTimeAvailable < fastestTime) {
+              fastestTime = p.nextTimeAvailable;
+              fastestPerson = p;
+            }
           }
         }
       }
-      if (!done)
+      if (fastestPerson == null) {
         return null;
+      }
+      usedPeople.add(fastestPerson);
+      canDoIt.add(fastestPerson);
     }
     return canDoIt;
   }
