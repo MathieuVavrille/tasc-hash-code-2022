@@ -73,13 +73,13 @@ public class Main {
     while (modified) {
       modified = false;
       ProjectPeople bestProjectP = null;
-      int bestScore = Integer.MIN_VALUE;
+      double bestScore = Double.MIN_VALUE;
       for (Project project : projects) {
         if (!usedProjects.contains(project)) {
           List<Person> talented = project.whoCanDoIt(people);
           if (talented != null) {
             ProjectPeople smallPP = new ProjectPeople(project, talented);
-            int scorePP = smallPP.weightedScore();
+            double scorePP = smallPP.weightedScore();
             if (scorePP > bestScore && random.nextDouble() < 0.1) {
               bestProjectP = smallPP;
               bestScore = scorePP;
