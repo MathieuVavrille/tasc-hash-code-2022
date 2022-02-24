@@ -1,6 +1,7 @@
 import java.util.*;
 
-public class Person {
+public class Person implements Comparable<Person> {
+
   public String name = "";
   public List<Skill> skills;
 
@@ -14,5 +15,12 @@ public class Person {
       if (s.name.equals(requiredSkill.name) && s.level >= requiredSkill.level) return true;
     }
     return false;
+  }
+
+  @Override
+  public int compareTo(Person p) {
+    int sumLevel = skills.stream().mapToInt(s -> s.level).sum();
+    int otherSumLevel = p.skills.stream().mapToInt(s -> s.level).sum();
+    return Integer.compare(sumLevel, otherSumLevel);
   }
 }
