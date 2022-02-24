@@ -14,30 +14,36 @@ public class Main {
       Scanner scanner = new Scanner(new File(args[0]));
       int C=scanner.nextInt();
       int P = scanner.nextInt();
+      List<Person> persons = new ArrayList<Person>();
       // persons
       for (int i = 0; i < C; i++) {
         String name = scanner.next();
         int N = scanner.nextInt();
+        List<Skill> skills = new ArrayList<Skill>();
         for (int j= 0; j < N; j++) {
           String talent = scanner.next();
           int level = scanner.nextInt();
+          skills.add(new Skills(talent, level));
         }
+        persons.add(new Person(name, skills));
       }
       //projects
+      List<Project> projects = new ArrayList<Project>();
       for (int i = 0; i < P; i++) {
         String name = scanner.next();
         int D = scanner.nextInt();
         int S = scanner.nextInt();
         int B = scanner.nextInt();
         int R = scanner.nextInt();
+        List<Skill> skills = new ArrayList<Skill>();
         for (int j= 0; j < R; j++) {
           String talent = scanner.next();
           int level = scanner.nextInt();
+          skills.add(new Skills(talent, level));
         }
+        projects.add(new Project(name, D, S, B, skills));
       }
-      //int intValue = scanner.nextInt();
-      //String stringValue = scanner.next();
-      
+
     } catch (Exception e) {
       e.printStackTrace();
     }
