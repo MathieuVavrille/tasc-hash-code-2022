@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Project {
+public class Project implements Comparable<Project> {
 
   public String name;
   public int duration;
@@ -33,5 +33,16 @@ public class Project {
         return null;
     }
     return canDoIt;
+  }
+
+  public double getRank() {
+    return (double) score / duration;
+  }
+
+  @Override
+  public int compareTo(Project p) {
+    if (getRank() < p.getRank()) return -1;
+    if (getRank() > p.getRank()) return 1;
+    return 0;
   }
 }
