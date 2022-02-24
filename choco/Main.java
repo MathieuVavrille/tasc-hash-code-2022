@@ -47,6 +47,7 @@ public class Main {
         }
         projects.add(new Project(name, D, S, B, skills));
       }
+      Collections.reverseOrder(projects);
       saveResults(greedySimple(persons, projects), filename);
     } catch (Exception e) {
       e.printStackTrace();
@@ -74,8 +75,8 @@ public class Main {
           writer.write(pers.name + " ");
         }
         writer.write("\n");
-        writer.close();
       }
+      writer.close();
     } catch (IOException e) {
       e.printStackTrace();
     }
