@@ -47,7 +47,7 @@ public class Main {
         }
         projects.add(new Project(name, D, S, B, skills));
       }
-      Collections.reverseOrder(projects);
+      Collections.sort(projects, Collections.reverseOrder());
       saveResults(greedySimple(persons, projects), filename);
     } catch (Exception e) {
       e.printStackTrace();
