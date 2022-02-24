@@ -3,6 +3,9 @@
 import org.chocosolver.solver.*;
 import org.chocosolver.util.*;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.io.File;
 
@@ -58,6 +61,22 @@ public class Main {
       }
     }
     return pp;
+  }
+
+  public void saveResults(List<ProjectPeople> projects) {
+    try {
+      BufferedWriter writer = new BufferedWriter(new FileWriter("out.txt"));
+      writer.write(projects.size() + "\n");
+      for (ProjectPeople p : projects) {
+        writer.write(p.project.name + "\n");
+        for (Person pers : p.people) {
+          writer.write(pers.name + " ");
+        }
+        writer.write("\n");
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   /*private static Model makeModel(int C, List<String> intToAliment, int[][] allAccepted, int[][] allRefused) {
