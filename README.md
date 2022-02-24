@@ -15,7 +15,7 @@ Vars:
 		T_i_k, the date when a person i can start project i, T_i_1 = 0
 		
 Constraints:
-	sum[l=1..K](A_i_j_k) =< 1 (the person cannot be assigned to handle more than one task in a project)
+	any i,k: sum[l=1..K](A_i_j_k) =< 1 (the person cannot be assigned to handle more than one task in a project)
 	A_i_j_k = 1 => (L_i_j >= R_j_k)
 	sum[i=1..N][j=1..M](A_i_j_k) = 0 OR sum[i=1..N][j=1..M](A_i_j_k) = R_k (either the project has enough people to commence or not done at all)
 	sum[i=1..N][j=1..M](A_i_j_k) = 0 => RST_k = -1 (if project isn't commenced then there's no real startdate)
@@ -23,5 +23,5 @@ Constraints:
 	i>1: T_i_k = max[l=1..i-1,j=1..K](A_i_j_k * (RST_k + D_k))
 	
 Score function:
-	Score = sum[k=1..M]([RST_k >= 0] * (S_k + max(0, RST_k + D_k - B_k)))
+	Score = sum[k=1..M]([RST_k >= 0] * (S_k + max(0, RST_k + D_k - B_k))) -> max
 	
