@@ -19,6 +19,7 @@ Constraints:
 	A_i_j_k = 1 => (L_i_j >= R_j_k)
 	sum[i=1..N][j=1..M](A_i_j_k) = 0 OR sum[i=1..N][j=1..M](A_i_j_k) = R_k (either the project has enough people to commence or not done at all)
 	sum[i=1..N][j=1..M](A_i_j_k) = 0 => RST_k = -1 (if project isn't commenced then there's no real startdate)
+	sum[i=1..N][j=1..M](A_i_j_k) = 0 => RST_k = max[i=1..N](T_i_k)
 	i>1: T_i_k = ??????
 	
 Score function:
