@@ -22,11 +22,19 @@ public class Project implements Comparable<Project> {
     for (Skill skill : skills) {
       boolean done = false;
       for (int i = 0; i < persons.size(); i++) {
-        if (!usedPersons.contains(i) && persons.get(i).canDo(skill)) {
-          usedPersons.add(i);
-          canDoIt.add(persons.get(i));
-          i = persons.size();
-          done = true;
+        if (!usedPersons.contains(i)) {
+          if (persons.get(i).canDo(skill)) {
+            usedPersons.add(i);
+            canDoIt.add(persons.get(i));
+            i = persons.size();
+            done = true;
+          }
+          if (person.get(i).canAlmostDo(skill) && skill.hasMentor()) {
+            usedPersons.add(i);
+            canDoIt.add(persons.get(i));
+            i = persons.size();
+            done = true;
+          }
         }
       }
       if (!done)
