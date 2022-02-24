@@ -30,7 +30,7 @@ public class ProjectPeople {
     people.stream().forEach(p -> p.nextTimeAvailable = terminationTime);
   }
 
-  public double weigthedScore() {
+  public double weightedScore() {
     return ((double)Math.max(0,score()))/terminationTime;
   }
 }
