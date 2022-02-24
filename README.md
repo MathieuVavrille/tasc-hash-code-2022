@@ -26,7 +26,7 @@ Constraints (without mentors and levelups):
 Constraints (without mentors):
 	any i,k: sum[l=1..K](A_i_j_k) =< 1 (the person cannot be assigned to handle more than one task in a project)
 	A_i_j_k = 1 => (LN_i_j_k >= R_j_k)
-	k>1. LN_i_j_k
+	k>1: LN_i_j_k = L_i_j + sum[l=1..k-1](1 * [A_i_j_k = 1 AND LN_i_j_k =< R_j_k])
 	sum[i=1..N][j=1..M](A_i_j_k) = 0 OR sum[i=1..N][j=1..M](A_i_j_k) = R_k (either the project has enough people to commence or not done at all)
 	sum[i=1..N][j=1..M](A_i_j_k) = 0 => RST_k = -1 (if project isn't commenced then there's no real startdate)
 	sum[i=1..N][j=1..M](A_i_j_k) = 0 => RST_k = max[i=1..N](T_i_k)
