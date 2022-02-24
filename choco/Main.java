@@ -12,9 +12,10 @@ import java.io.File;
 public class Main {
 
   public static void main(String[] args) {
+    String filename = args[0];
     long timeLimit = 300L*1000000000L;
     try {
-      Scanner scanner = new Scanner(new File(args[0]));
+      Scanner scanner = new Scanner(new File(filename));
       int C=scanner.nextInt();
       int P = scanner.nextInt();
       List<Person> persons = new ArrayList<Person>();
@@ -46,13 +47,13 @@ public class Main {
         }
         projects.add(new Project(name, D, S, B, skills));
       }
-
+      saveResults(greedySimple(persons, projects), filename);
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
-  public List<ProjectPeople> greedySimple(List<Person> persons, List<Project> projects) {
+  public static List<ProjectPeople> greedySimple(List<Person> persons, List<Project> projects) {
     List<ProjectPeople> pp = new ArrayList<ProjectPeople>();
     for (Project project : projects) {
       List<Person> talented = project.whoCanDoIt(persons);
@@ -63,9 +64,9 @@ public class Main {
     return pp;
   }
 
-  public void saveResults(List<ProjectPeople> projects) {
+  public static void saveResults(List<ProjectPeople> projects, String filename) {
     try {
-      BufferedWriter writer = new BufferedWriter(new FileWriter("out.txt"));
+      BufferedWriter writer = new BufferedWriter(new FileWriter(filename + ".out"));
       writer.write(projects.size() + "\n");
       for (ProjectPeople p : projects) {
         writer.write(p.project.name + "\n");
@@ -73,6 +74,7 @@ public class Main {
           writer.write(pers.name + " ");
         }
         writer.write("\n");
+        writer.close();
       }
     } catch (IOException e) {
       e.printStackTrace();
