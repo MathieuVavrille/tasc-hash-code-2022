@@ -23,7 +23,7 @@ public class Main {
         for (int j= 0; j < N; j++) {
           String talent = scanner.next();
           int level = scanner.nextInt();
-          skills.add(new Skills(talent, level));
+          skills.add(new Skill(talent, level));
         }
         persons.add(new Person(name, skills));
       }
@@ -39,7 +39,7 @@ public class Main {
         for (int j= 0; j < R; j++) {
           String talent = scanner.next();
           int level = scanner.nextInt();
-          skills.add(new Skills(talent, level));
+          skills.add(new Skill(talent, level));
         }
         projects.add(new Project(name, D, S, B, skills));
       }
@@ -52,7 +52,7 @@ public class Main {
   public List<ProjectPeople> greedySimple(List<Person> persons, List<Project> projects) {
     List<ProjectPeople> pp = new ArrayList<ProjectPeople>();
     for (Project project : projects) {
-      List<Person> talented = project.canBeDone(persons);
+      List<Person> talented = project.whoCanDoIt(persons);
       if (talented != null) {
         pp.add(new ProjectPeople(project, talented));
       }
