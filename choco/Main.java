@@ -49,7 +49,18 @@ public class Main {
     }
   }
 
-  private static Model makeModel(int C, List<String> intToAliment, int[][] allAccepted, int[][] allRefused) {
+  public List<ProjectPeople> greedySimple(List<Person> persons, List<Project> projects) {
+    List<ProjectPeople> pp = new ArrayList<ProjectPeople>();
+    for (Project project : projects) {
+      List<Person> talented = project.canBeDone(persons);
+      if (talented != null) {
+        pp.add(new ProjectPeople(project, talented));
+      }
+    }
+    return pp;
+  }
+
+  /*private static Model makeModel(int C, List<String> intToAliment, int[][] allAccepted, int[][] allRefused) {
     Model model = new Model("Problem");
     model.sum(clients, "=", objective).post();
     //model.setObjective(true, objective);
@@ -60,6 +71,6 @@ public class Main {
         }
       });
     return model;
-  }
+    }*/
 }
   
